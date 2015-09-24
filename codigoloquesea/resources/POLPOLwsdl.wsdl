@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.globallogic.com.ar/poliza" xmlns:pol="http://www.globallogic.com.ar/poliza" targetNamespace="http://www.globallogic.com.ar/poliza">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.globallogic.com.ar/poliza" elementFormDefault="qualified">
+			<xs:include schemaLocation="./poliza.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="polizaRequest">
+		<wsdl:part name="parameter" element="pol:polizaRequest"/>
+	</wsdl:message>
+	<wsdl:message name="polizaResponse">
+		<wsdl:part name="parameter" element="pol:polizaResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="getPortPol">
+		<wsdl:operation name="getOpe">
+			<wsdl:input message="tns:polizaRequest"/>
+			<wsdl:output message="tns:polizaResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="getBinPol" type="tns:getPortPol">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getOpe">
+			<soap:operation soapAction="urn:/getOpes"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="getPOL">
+		<wsdl:port name="getPortPol" binding="tns:getBinPol">
+			<soap:address location="No Target Adress"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
